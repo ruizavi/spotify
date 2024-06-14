@@ -1,0 +1,53 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#root {
+  height: 100vh;
+  overflow: hidden;
+}
+
+.layout {
+  grid-template-rows: 90% auto;
+  grid-template-columns: 20% auto auto 20%;
+  grid-template-areas:
+    "sidebar main main queue"
+    "sidebar main main queue"
+    "sidebar main main queue"
+    "control control control control";
+}
+
+#sidebar {
+  grid-area: sidebar;
+}
+#main {
+  grid-area: main;
+}
+#queue {
+  grid-area: queue;
+}
+#control {
+  grid-area: control;
+}
+
+@layer base {
+  @font-face {
+    font-family: "CircularSp Bold";
+    src: url("/fonts/CircularSp-Bold.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "CircularSp Book";
+    src: url("/fonts/CircularSp-Book.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "CircularSpTitle Black";
+    src: url("/fonts/CircularSpTitle-Black.woff2") format("woff2");
+  }
+
+  @font-face {
+    font-family: "CircularSpTitle Bold";
+    src: url("/fonts/CircularSpTitle-Bold.woff2") format("woff2");
+  }
+}

@@ -1,0 +1,160 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model album {
+  id         Int          @id @default(autoincrement())
+  name       String       @db.VarChar(50)
+  cover      String?      @db.Text
+  artist_id  Int?
+  artist     artist?      @relation(fields: [artist_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "album_ibfk_1")
+  song_album song_album[]
+
+  @@index([artist_id], map: "artist_id")
+}
+
+model artist {
+  id     Int     @id @default(autoincrement())
+  name   String  @unique(map: "name") @db.VarChar(50)
+  avatar String? @db.Text
+  album  album[]
+  song   song[]
+}
+
+model entity {
+  id          Int           @id @default(autoincrement())
+  name        String        @unique(map: "name") @db.VarChar(20)
+  like_entity like_entity[]
+}
+
+model jam {
+  id             String           @id @unique(map: "id") @db.VarChar(36)
+  song_id        Int?
+  play           Boolean?        @default(false)
+  timestampt    Int?
+  song           song?            @relation(fields: [song_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "jam_ibfk_1")
+  jam_play_queue jam_play_queue[]
+  jam_user       jam_user[]
+
+  @@index([song_id], map: "song_id")
+}
+
+model jam_play_queue {
+  jam_id  String @db.VarChar(36)
+  song_id Int
+  song    song   @relation(fields: [song_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "jam_play_queue_ibfk_1")
+  jam     jam    @relation(fields: [jam_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "jam_play_queue_ibfk_2")
+
+  @@id([jam_id, song_id])
+  @@index([song_id], map: "song_id")
+}
+
+model jam_user {
+  jam_id  String @db.VarChar(36)
+  user_id Int    @unique(map: "user_id")
+  jam     jam    @relation(fields: [jam_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "jam_user_ibfk_1")
+  user    user   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "jam_user_ibfk_2")
+
+  @@id([jam_id, user_id])
+}
+
+model like_entity {
+  entity_id Int
+  like_id   Int
+  user_id   Int
+  entity    entity @relation(fields: [entity_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "like_entity_ibfk_1")
+  user      user   @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "like_entity_ibfk_2")
+
+  @@id([entity_id, like_id, user_id])
+  @@index([user_id], map: "user_id")
+}
+
+model play_queue {
+  user_id Int
+  song_id Int
+  song    song @relation(fields: [song_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "play_queue_ibfk_1")
+  user    user @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "play_queue_ibfk_2")
+
+  @@id([user_id, song_id])
+  @@index([song_id], map: "song_id")
+}
+
+model playlist {
+  id            Int             @id @default(autoincrement())
+  name          String          @db.VarChar(50)
+  cover         String?         @db.Text
+  user_id       Int
+  user          user            @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "playlist_ibfk_1")
+  playlist_song playlist_song[]
+
+  @@index([user_id], map: "user_id")
+}
+
+model playlist_song {
+  playlist_id Int
+  song_id     Int
+  playlist    playlist @relation(fields: [playlist_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "playlist_song_ibfk_1")
+  song        song     @relation(fields: [song_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "playlist_song_ibfk_2")
+
+  @@id([playlist_id, song_id])
+  @@index([song_id], map: "song_id")
+}
+
+model song {
+  id             Int              @id @default(autoincrement())
+  name           String           @db.VarChar(100)
+  file           String           @db.VarChar(100)
+  duration       Int
+  artist_id      Int
+  jam            jam[]
+  jam_play_queue jam_play_queue[]
+  play_queue     play_queue[]
+  playlist_song  playlist_song[]
+  song_album     song_album[]
+  state          state[]
+  artist         artist @relation(fields: [artist_id], references: [id])
+}
+
+model song_album {
+  song_id  Int
+  album_id Int
+  album    album @relation(fields: [album_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "song_album_ibfk_1")
+  song     song  @relation(fields: [song_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "song_album_ibfk_2")
+
+  @@id([song_id, album_id])
+  @@index([album_id], map: "album_id")
+}
+
+model state {
+  user_id    Int   @id
+  song_id    Int?
+  user       user  @relation(fields: [user_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "state_ibfk_1")
+  song       song? @relation(fields: [song_id], references: [id], onDelete: NoAction, onUpdate: NoAction, map: "state_ibfk_2")
+
+  @@index([song_id], map: "song_id")
+}
+
+model user {
+  id          Int           @id @default(autoincrement())
+  username    String        @db.VarChar(50)
+  password    String
+  email       String        @db.VarChar(100)
+  role        String?       @default("USER")
+  gender      String
+  marketing   Boolean?      @default(false)
+  share_content   Boolean?      @default(false)
+  birthday    DateTime
+  avatar      String?       @db.Text
+  jam_user    jam_user?
+  like_entity like_entity[]
+  play_queue  play_queue[]
+  playlist    playlist[]
+  state       state?
+
+  @@unique([username, email], map: "username")
+}
