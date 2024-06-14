@@ -31,7 +31,7 @@ npm run dev
 
 El proyecto aun se encuentra en desarrollo, no es lo suficientemente maduro para realizar su despliegue en producción, las tareas pendientes se listan adelante
 
-- [ ] Mantener persistencia de la canción al cambiar entre vistas
+- [x] Mantener persistencia de la canción al cambiar entre vistas
 - [ ] Vista /app/collection/artist/:id en el cliente, para la vista principal por artista
 - [ ] Vista /app/collection/album/:id en el cliente, para la vista pricipal por album
 - [ ] Vista /app/collection/playlist/:id en el cliente, para la vista pricipal por playlist

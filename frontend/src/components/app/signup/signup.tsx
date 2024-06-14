@@ -68,7 +68,7 @@ const Signup = () => {
 	const step = searchParams.get("step") ?? "0";
 
 	return (
-		<main className="w-full h-full bg-base flex items-center flex-col">
+		<main className="w-full h-full bg-main flex items-center flex-col">
 			<header className="p-8 self-start">
 				<Spotify className="fill-white" />
 			</header>

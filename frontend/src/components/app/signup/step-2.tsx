@@ -45,7 +45,7 @@ const Step2 = ({ changeQuery, handleFormData }: Props) => {
 					type="text"
 					name="username"
 					required
-					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 				/>
 			</label>
 
@@ -63,12 +63,12 @@ const Step2 = ({ changeQuery, handleFormData }: Props) => {
 						required
 						placeholder="dd"
 						maxLength={2}
-						className="w-[30%] p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+						className="w-[30%] p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 					/>
 					<select
 						required
 						name="month"
-						className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+						className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 					>
 						<option value="" disabled>
 							Month
@@ -92,7 +92,7 @@ const Step2 = ({ changeQuery, handleFormData }: Props) => {
 						maxLength={4}
 						required
 						placeholder="yyyy"
-						className="w-[30%] p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+						className="w-[30%] p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 					/>
 				</div>
 			</label>

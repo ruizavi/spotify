@@ -27,7 +27,7 @@ const Step0 = ({ changeQuery, handleFormData }: Props) => {
 					type="email"
 					name="email"
 					required
-					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 				/>
 			</label>
 			<button type="submit" className="bg-background w-full rounded-full my-8">

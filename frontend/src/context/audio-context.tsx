@@ -10,7 +10,8 @@ import useControl from "../hooks/useControl";
 const AudioContext = createContext(null);
 
 export function AudioProvider({ children }: PropsWithChildren) {
-  const { setTime, song, isPlay, setPlay, currentTime, volume, dragTime, isMute } = useControl();
+  const { setTime, song, isPlay, setPlay, volume, dragTime, isMute } =
+    useControl();
 
   const audioRef = useRef<HTMLAudioElement>(null);
 
@@ -18,28 +19,27 @@ export function AudioProvider({ children }: PropsWithChildren) {
     if (!audioRef.current) return;
 
     !isPlay ? audioRef.current.pause() : audioRef.current.play();
-
   }, [isPlay]);
 
   useEffect(() => {
     if (!audioRef.current) return;
 
-    audioRef.current.muted = isMute
-  }, [isMute])
+    audioRef.current.muted = isMute;
+  }, [isMute]);
 
   useEffect(() => {
     if (!audioRef.current) return;
 
     audioRef.current.volume = volume;
-  }, [volume])
+  }, [volume]);
 
   useEffect(() => {
     if (!audioRef.current) return;
 
-    audioRef.current.currentTime = dragTime
+    audioRef.current.currentTime = dragTime;
 
-    setTime(dragTime)
-  }, [dragTime])
+    setTime(dragTime);
+  }, [dragTime]);
 
   useEffect(() => {
     if (!audioRef.current) return;
@@ -49,9 +49,9 @@ export function AudioProvider({ children }: PropsWithChildren) {
 
     audioRef.current.load();
 
-    audioRef.current.currentTime = 0
+    audioRef.current.currentTime = 0;
 
-    setTime(0)
+    setTime(0);
 
     setPlay(false);
   }, [song]);

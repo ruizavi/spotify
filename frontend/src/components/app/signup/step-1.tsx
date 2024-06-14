@@ -79,7 +79,7 @@ const Step1 = ({ changeQuery, handleFormData }: Props) => {
 					name="password"
 					required
 					id="password"
-					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 				/>
 				<button
 					type="button"
@@ -106,7 +106,7 @@ const Step1 = ({ changeQuery, handleFormData }: Props) => {
 					name="confirm_password"
 					id="password"
 					required
-					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 				/>
 				<button
 					type="button"

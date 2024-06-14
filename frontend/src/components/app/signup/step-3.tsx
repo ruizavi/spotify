@@ -50,7 +50,7 @@ const Step3 = ({ data }: Props) => {
 					type="checkbox"
 					name="marketing"
 					value="true"
-					className="p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white accent-background "
+					className="p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white accent-background "
 				/>
 				<p className="font-circularSpBold text-white text-sm py-2">
 					I would prefer not to receive marketing messages from Spotify
@@ -61,7 +61,7 @@ const Step3 = ({ data }: Props) => {
 					type="checkbox"
 					value="true"
 					name="share_content"
-					className="p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white accent-background "
+					className="p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white accent-background "
 				/>
 				<p className="font-circularSpBold text-white text-sm py-2">
 					Share my registration data with Spotify's content providers for

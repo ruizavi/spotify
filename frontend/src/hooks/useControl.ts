@@ -1,7 +1,6 @@
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import type { album, artist, song } from "../lib/types";
-import { boolean } from "zod";
 
 type Song = song & { artist: artist; album: album; isLiked: object };
 type Location =
@@ -21,6 +20,7 @@ interface State {
 
   volume: number;
   isMute: boolean;
+  queue: Array<number>;
 }
 
 interface Action {
@@ -30,6 +30,7 @@ interface Action {
   setVolume(volume: number): void;
   setDragtime(dragTime: number): void;
   setIsMute(isMute?: boolean): void;
+  setQueue(queue: number[]): void;
 }
 
 const useControl = create<State & Action>()(
@@ -44,6 +45,7 @@ const useControl = create<State & Action>()(
       dragTime: 0,
       volume: 0,
       isMute: false,
+      queue: [],
 
       setSong: (song, location, entity = null) =>
         set({ song, location, entity, isPlay: true }),
@@ -53,6 +55,7 @@ const useControl = create<State & Action>()(
       setDragtime: (dragTime) => set({ dragTime }),
       setIsMute: (isMute) =>
         set((state) => ({ isMute: isMute ?? !state.isMute })),
+      setQueue: (queue) => set({ queue }),
     }),
 
     { name: "control-state" }

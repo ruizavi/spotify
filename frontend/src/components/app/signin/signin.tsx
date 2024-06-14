@@ -5,7 +5,7 @@ import SignInForm from "./signin-form";
 const Signin = () => {
 	return (
 		<main className="w-full h-full bg-gradient-to-b from-zinc-800 to-black grid place-content-center">
-			<div className="bg-base w-[734px] p-8 rounded-md">
+			<div className="bg-main w-[734px] p-8 rounded-md">
 				<header>
 					<Spotify className="fill-white mx-auto mb-8" />
 					<h1 className="font-circularSpBold text-white text-3xl text-center">

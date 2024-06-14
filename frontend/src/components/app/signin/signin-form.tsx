@@ -57,7 +57,7 @@ const SignInForm = () => {
 					type="email"
 					name="email"
 					required
-					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 				/>
 			</label>
 			<div>
@@ -71,7 +71,7 @@ const SignInForm = () => {
 					name="password"
 					required
 					id="password"
-					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-base text-white"
+					className="w-full p-3 outline-none rounded-[4px] border border-gray-500 bg-main text-white"
 				/>
 				<button
 					type="button"
