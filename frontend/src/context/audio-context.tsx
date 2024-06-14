@@ -49,7 +49,9 @@ export function AudioProvider({ children }: PropsWithChildren) {
 
     audioRef.current.load();
 
-    if (currentTime !== 0) audioRef.current.currentTime = currentTime;
+    audioRef.current.currentTime = 0
+
+    setTime(0)
 
     setPlay(false);
   }, [song]);

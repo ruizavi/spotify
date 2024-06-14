@@ -34,7 +34,7 @@ const TimeSlider = () => {
         max={song?.duration ?? 60}
         value={[currentTime]}
         onValueChange={handleChange}
-        className="w-[466px]"
+        className="w-[512px]"
       />
       <span>{song?.duration ? fancyTimeFormat(song.duration) : "--:--"}</span>
     </div>
